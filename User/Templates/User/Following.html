@@ -1,0 +1,56 @@
+{% extends 'User/header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Followers List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #followers-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        #followers-list li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        #followers-list li:hover {
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Followers List</h1>
+    <ul id="followers-list">
+       {% for i in data %}
+        <li>
+{{ i.coach.coach_name }}
+       </li>
+       {% endfor %}
+        <!-- Add more followers as needed -->
+    </ul>
+</body>
+</html>
+{% endblock content %}

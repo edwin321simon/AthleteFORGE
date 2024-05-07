@@ -1,0 +1,53 @@
+{% extends 'Shop/header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comaplaints</title>
+    <!-- Include Bootstrap CSS (Assuming you have Bootstrap files in your project directory) -->
+</head>
+
+
+ 
+    <form action="#" method="post" class="form-reg"  enctype="multipart/form-data">
+    <div class="container">
+        
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">SL.NO</th>
+                   <th scope="col">Name</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Content</th>
+                 
+                    <th scope="col">Date</th>
+                    <th scope="col">Response</th>
+                </tr>
+            </thead>
+            <tbody>
+               {% for i in shop %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.shop.shop_name}}</td>
+                    <td>{{i.complaint_title}}</td>
+                    <td>{{i.complaint_content}}</td>
+                 <td>{{i.complaint_date}}</td>
+                    <td>{{i.comaplaint_replay}}</td>
+                    
+               
+                </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+
+
+
+{% endblock content %}

@@ -1,0 +1,64 @@
+{% extends 'User/header.html' %}
+{% load static %}
+{% block content %}{% load mathfilters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product detials</title>
+    <style>
+        .sub {
+            padding: 20px;
+            width: fit-content;
+            background-color: #d4a762;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        {% for i in data %}
+        <div class="sub">
+            <div><img src="{{i.product.product_photo.url}}" alt="product photo" height="200" width="200"></div>
+            <div>Name: {{i.product.product_name}}</div>
+            <div>Quantity: {{i.cart_quantity}}</div>
+            <div>Brand: {{i.product.scategory.scategory_name}}</div>
+            <div>Total: {{i.cart_quantity|mul:i.product.product_price}}</div>
+            <div>
+                {% if i.cart_status != "5" %}     
+                
+                {% endif %}
+                {% if i.cart_status == "2" %}
+                <p style="color: rgb(18, 153, 63);">Packed</p>
+                {% elif i.cart_status == "3" %}
+                <p style="color: rgba(19, 190, 67, 0.771);">Shipped</p>
+                {% elif i.cart_status == "4" %}
+                <p style="color: rgb(3, 233, 18);">Item deliverd</p>
+                {% elif i.cart_status == "5" %}
+                <p style="color: rgb(220, 11, 11);">Item Canceld </p>
+                {% else %}
+                <p style="color: rgb(41, 14, 246);">Item In Process</p>
+                {% endif %}
+            </p>
+                {% if i.cart_status != "5" %}     
+                <p><a style="color: black;" href="{% url 'webuser:CancelProduct' i.id %}" class="btn btn-primary py-2 px-3  d-xl-inline-block">Cancel Product</a></p>
+                {% endif %} 
+                <a href="{% url 'webuser:pdtrating' i.id %}" style="color: red;">Rate</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+</body>
+
+    </html>
+    {% endblock content %}

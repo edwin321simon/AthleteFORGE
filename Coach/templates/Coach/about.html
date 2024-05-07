@@ -1,0 +1,199 @@
+{% extends 'Coach/header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- About Satrt -->
+     <div class="container-fluid py-6">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5 wow bounceInUp" data-wow-delay="0.1s">
+                    <img src="{%  static 'Main/img/pexels-photo-2803158.webp'  %}" class="img-fluid rounded" alt="">
+                </div>
+                <div class="col-lg-7 wow bounceInUp" data-wow-delay="0.3s">
+                    <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">About Us</small>
+                    <h1 class="display-5 mb-4">Trusted By many Atheltes</h1>
+                    <p class="mb-4">Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore eit esdioilore magna aliqua. Ut enim ad minim veniam, 
+                        quis nostrud exercitation ullaemco laboeeiris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+                        dolor iesdein reprehendeerit in voluptate velit esse cillum dolore.</p>
+                    <div class="row g-4 text-dark mb-5">
+                        <div class="col-sm-6">
+                            <i class="fas fa-share text-primary me-2"></i>Fast Delivery
+                        </div>
+                        <div class="col-sm-6">
+                            <i class="fas fa-share text-primary me-2"></i>Customer Support
+                        </div>
+                        <div class="col-sm-6">
+                            <i class="fas fa-share text-primary me-2"></i>Professional Coaches
+                        </div>
+                        <div class="col-sm-6">
+                            <i class="fas fa-share text-primary me-2"></i>Professional Training
+                    </div>
+                    <a href="{% url 'webguest:Contact' %}" class="btn btn-primary py-3 px-5 rounded-pill">About Us<i class="fas fa-arrow-right ps-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+ <!-- Fact Start-->
+ <div class="container-fluid faqt py-6">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+               <div class="row g-4">
+                    <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.3s">
+                        <div class="faqt-item bg-primary rounded p-4 text-center">
+                            <i class="fas fa-users fa-4x mb-4 text-white"></i>
+                            <h1 class="display-4 fw-bold">Happy Users</h1>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.5s">
+                        <div class="faqt-item bg-primary rounded p-4 text-center">
+                            <i class="fas fa-users-cog fa-4x mb-4 text-white"></i>
+                            <h1 class="display-4 fw-bold" >Expert Coach</h1>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.7s">
+                        <div class="faqt-item bg-primary rounded p-4 text-center">
+                            <i class="fas fa-check fa-4x mb-4 text-white"></i>
+                            <h1 class="display-4 fw-bold" >Verified Shops</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 wow bounceInUp" data-wow-delay="0.1s">
+                <img src="{%  static 'Main/img/wp2068169.webp'  %}" class="img-fluid rounded" alt="">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Video -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- 16:9 aspect ratio -->
+                <div class="ratio ratio-16x9">
+                    <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
+                        allow="autoplay"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fact End -->
+<!-- Coaches Start -->
+<div class="container-fluid service py-6">
+    <div class="container">
+        <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
+            <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Our Trainings</small>
+            <h1 class="display-5 mb-5">What We Offer</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.1s">
+                <div class="bg-light rounded service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-icon text-center">
+                            <i class="fas fa-cheese fa-7x text-primary mb-4"></i>
+                            <h4 class="mb-3">Sprint Runnings</h4>
+                            <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.3s">
+                <div class="bg-light rounded service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-icon text-center">
+                            <i class="fas fa-pizza-slice fa-7x text-primary mb-4"></i>
+                            <h4 class="mb-3">Long Runnings</h4>
+                            <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.5s">
+                <div class="bg-light rounded service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-icon text-center">
+                            <i class="fas fa-hotdog fa-7x text-primary mb-4"></i>
+                            <h4 class="mb-3">Throwings</h4>
+                            <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.7s">
+                <div class="bg-light rounded service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-icon text-center">
+                            <i class="fas fa-hamburger fa-7x text-primary mb-4"></i>
+                            <h4 class="mb-3">Jumpings</h4>
+                            <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.1s">
+                <div class="bg-light rounded service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-icon text-center">
+                            <i class="fas fa-wine-glass-alt fa-7x text-primary mb-4"></i>
+                            <h4 class="mb-3">Walkings</h4>
+                            <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.3s">
+                <div class="bg-light rounded service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-icon text-center">
+                            <i class="fas fa-walking fa-7x text-primary mb-4"></i>
+                            <h4 class="mb-3">Diet plans</h4>
+                            <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.5s">
+                <div class="bg-light rounded service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-icon text-center">
+                            <i class="fas fa-wheelchair fa-7x text-primary mb-4"></i>
+                            <h4 class="mb-3">Body Fitness</h4>
+                            <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.7s">
+                <div class="bg-light rounded service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-icon text-center">
+                            <i class="fas fa-utensils fa-7x text-primary mb-4"></i>
+                            <h4 class="mb-3">Breathing Exercises</h4>
+                            <p class="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+</body>
+</html>
+
+{% endblock content %}

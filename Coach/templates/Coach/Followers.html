@@ -1,0 +1,142 @@
+{% extends 'Coach/header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Followers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+
+        th {
+            background-color: #007bff;
+            color: rgb(233, 151, 9);
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 10px 0 0 0;
+        }
+
+        td {
+            background-color: #f2f2f2;
+            font-size: 14px;
+            border-radius: 0 10px 0 0;
+        }
+
+        tr:hover {
+            background-color: #e9ecef;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            font-size: 24px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .total-row {
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+            font-size: 14px;
+        }
+
+        .total-row td {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(to right, #007bff, #00bfff);
+        }
+
+        /* Add some creativity */
+        .animated-bg {
+            animation: changeBgColor 5s infinite alternate;
+        }
+
+        @keyframes changeBgColor {
+            0% {
+                background-color: #f2f2f2;
+            }
+            100% {
+                background-color: #e9ecef;
+            }
+        }
+
+        /* Custom icon styling */
+        .action-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: #007bff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .action-icon:hover {
+            transform: scale(1.2);
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var totalFollowers = document.querySelectorAll("table tbody tr").length;
+            document.getElementById("totalFollowers").textContent = "Total Followers: " + totalFollowers;
+        });
+    </script>
+</head>
+<body>
+    <h2>MY FOLLOWERS</h2>
+    <table border="0" align="center">
+        <tr class="gradient-bg">
+            <th class="animated-bg">Name</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{ i.user.user_name }}</td>
+        </tr>
+        {% endfor %}
+        <tr class="total-row">
+            <td id="totalFollowers" colspan="2" style="color: rgb(233, 151, 9);"></td>
+        </tr>
+    </table>
+</body>
+</html>
+{% endblock content %}

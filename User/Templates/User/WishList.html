@@ -1,0 +1,36 @@
+{% extends 'User/header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product detials</title>
+</head>
+<body>
+    <table cellpadding="10" align="center">
+        <tr>
+            <td>SL. No.</td>
+            <td>Product</td>
+            <td>Brand</td>
+            <td>
+                Price
+            </td>
+            <td>Remove</td>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.product.product_name}}</td>
+            <td>{{i.product.scategory.scategory_name}}</td>
+                  <td>{{i.product.product_price}}</td>
+            <td><a href="{% url 'webuser:remove_list' i.id %}" class="btn btn-danger">Remove</a></td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+    </html>
+    {% endblock content %}

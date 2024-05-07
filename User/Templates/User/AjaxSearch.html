@@ -1,0 +1,32 @@
+{% for i,j in products %}
+
+
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="100" style="margin-bottom:1rem">
+              <div class="media media-custom d-block mb-4 h-100">
+                <div class="mb-4 d-block" align="center"><img  src="{{i.product_photo.url}}" alt="Image placeholder" class="img-fluid" style="height:250px" align="center"></div>
+                <div class="media-body">
+                  <span class="meta-post">Name: {{i.product_name}}</span>
+                  <p>{{i.scategory.scategory_name}}</p>
+                  <p>{{i.product_price}}</p>
+                  
+
+                  <p>
+                    {% for k in ar %} {% if k <= j %}
+                    <i class="fas fa-star text-warning"></i>
+                    {% else %}
+                    <i class="fas fa-star star-light"></i>
+                    {% endif %} {% endfor %}
+                  </p>
+                 <p>
+                    <!-- <a style="background-color: rgb(227, 149, 13); border-radius: 15px;" href="#"  class="btn btn-primary py-2 px-3  d-xl-inline-bloc">Follow</a>&nbsp;&nbsp; -->
+                 
+                 </p>
+                  <a href="{% url 'webuser:ProductDetails' i.id %}">View More......</a>
+                </div>
+              </div>
+            </div>
+         
+          </div>
+        </div>
+        
+        {% endfor %}

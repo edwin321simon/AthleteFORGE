@@ -1,0 +1,93 @@
+{% extends 'User/header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Booking</title>
+</head>
+<style>
+    body {
+        
+        background-size: 1540px 900px;
+    
+    }
+
+    .main-con {
+        margin-top: 10px;
+        left: 200px;
+    }
+
+    .tb {
+        background-color: rgba(255, 255, 255, 0.567);
+        margin-left: 20px;
+        border-radius: 9px;
+    }
+
+    .tb:hover {
+        transition: transform 0.5s;
+        transform: scale(0.9);
+        box-shadow: 0 30px 30px black;
+    }
+
+    .bt {
+        background-color: transparent;
+        border: none;
+    }
+</style>
+<body>
+                           
+    
+
+        <h4 align="center">Booking Details</h4>
+        <br>
+      
+        <br>
+
+            <table class="main-con" align="center">
+                <tr>
+                
+                </tr>
+                <tr>
+                    <td>
+                        <!-- <div style="border:1px solid black;margin:10px;padding:5px"> -->
+                        <table width="700" class="tb">
+                            
+                            <tr>
+                                <th>Sl. No.</th>
+                                
+                                <th>Details</th>
+                                <th>Amount</th>
+                                <th>Subscribe</th>
+                            </tr>
+                            <br>
+                            <br>
+                            {% for i in pack %}
+                                                        <tr>
+                                <td>{{forloop.counter}}</td>
+                               
+                                <td>{{i.subscription_details}}</td>
+                                <td>{{i.subscription_amount}}</td>
+                                                             
+                                <td><a href="{% url 'webuser:subscribepayment' i.id cid %}" class="btn btn-primary py-2 px-3  d-xl-inline-block">Subscribe</a> </td>
+                                
+                                    {% endfor %}
+                                    
+                                </tr>
+                               
+                            
+                        </table>
+                        {% if msg %}
+                        <script>
+                            alert("{{msg}}")
+                            window.location = "{% url 'webuser:subscribe' cid %}"
+                        </script>
+                        {% endif %}
+                     
+                        </table>
+                        </body>
+                        </html>
+                        {% endblock content %}

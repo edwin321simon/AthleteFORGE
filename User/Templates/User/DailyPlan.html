@@ -1,0 +1,132 @@
+
+
+
+{% extends 'Coach/header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        form {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            border-radius: 50px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        input[type="text"], textarea {
+            width: calc(100% - 24px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-reset {
+            background-color: #dc3545;
+        }
+
+        .btn-reset:hover {
+            background-color: #c82333;
+        }
+
+        .btn-container {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <table border="1" cellspacing="0" cellpadding="8" align="center">
+        <tr>
+            <th>
+                Sl.No
+            </th>
+           
+            <th>
+                Day
+            </th>
+            <th>
+                Workout Count
+                </th>
+                <th>
+                    Do Workout
+                </th>
+            
+           
+                {% for i in data %}
+                            <tr>
+                <td>
+                    {{forloop.counter}}
+                </td>
+                
+                <td>
+                    {{i.dailyplan_day}}
+                </td>
+                <td>
+                    {{i.dailyplan_wcount}}
+                </td>
+                <td>
+                    <a href="{% url 'webuser:Workout' i.id %}" class="btn btn-success">Do Workout</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+</body>
+
+</html>
+{% endblock content %}

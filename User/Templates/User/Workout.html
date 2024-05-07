@@ -1,0 +1,237 @@
+{% extends 'User/header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        form {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        input[type="text"], textarea, input[type="file"] {
+            width: calc(100% - 24px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus, textarea:focus, input[type="file"]:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button[type="reset"] {
+            background-color: #dc3545;
+        }
+
+        button[type="reset"]:hover {
+            background-color: #c82333;
+        }
+
+        .btn-container {
+            text-align: center;
+        }
+
+        video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .file-label {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .file-label:hover {
+            background-color: #0056b3;
+        }
+
+        .table-container {
+            margin-top: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            padding-left: 15%;
+            width: 90%;
+           
+        }
+
+        .table-header {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .table-header th {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .table-body tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .table-body td {
+            padding: 15px;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table-body td:last-child {
+            border-bottom: none;
+        }
+
+        .table-body video {
+            width: 100%;
+            height: 50%;
+            max-width: 500px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="table-container">
+        <div style="margin-top: 20px;" align="center">
+            <progress id="progressBar" value="{{ progress_percentage }}" max="100"></progress>
+            <span id="progressLabel">{{ progress_percentage }}%</span>
+        </div>
+        <table border="0" align="center">
+            <tr class="table-header">
+                <th>
+                    Sl. No.
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                
+                <th>
+                    Video
+                </th>
+                <th>
+                    Mark
+                </th>
+            </tr>
+            <!-- {% for i in data %}
+            <tr class="table-body">
+                <td>{{forloop.counter}}</td>
+                <td>{{i.workout_name}}</td>
+                <td>{{i.workout_discription}}</td>
+               
+                <td>
+                    <video controls>
+                        <source src="{{i.workout_file.url}}">
+                    </video>
+                </td>
+            </tr>
+            {% endfor %} -->
+            {% for workout, checkbox_exists in data %}
+            <tr id="row{{ forloop.counter }}" class="table-body">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ workout.workout_name }}</td>
+                <td>{{ workout.workout_discription }}</td>
+                <td><video controls><source src="{{workout.workout_file.url}}"></video></td>
+                <td>
+                    {% if checkbox_exists %}
+                    <input type="checkbox" id="checkbox{{ workout.id }}" name="checkbox" checked disabled onclick="todo('{{ workout.id }}', '{{ forloop.counter }}')">
+                    {% else %}
+                    <input type="checkbox" id="checkbox{{ workout.id }}" name="checkbox" onclick="todo('{{ workout.id }}', '{{ forloop.counter }}')">
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var progressPercentage = {{ progress_percentage }};
+        $('#progressBar').val(progressPercentage);
+        $('#progressLabel').text(progressPercentage + '%');
+    });
+
+    function todo(id, rowId) {
+        var ur = "{% url 'webuser:AjaxCheckbox' %}";
+
+        // Check if the row is blurred
+        if ($('#row' + rowId).hasClass('blur')) {
+            return; // Do nothing if the row is blurred
+        }
+
+        $.ajax({
+            url: ur,
+            data: { wid: id },
+            success: function (data) {
+                // Blur clicked row
+             
+                window.location.reload()
+            },
+        });
+    }
+</script>
+</html>
+{% endblock content %}

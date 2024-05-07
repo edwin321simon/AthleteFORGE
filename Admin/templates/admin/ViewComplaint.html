@@ -1,0 +1,131 @@
+{% extends 'Admin/Header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaints</title>
+    <!-- Include Bootstrap CSS (Assuming you have Bootstrap files in your project directory) -->
+</head>
+<body>
+    <form action="#" method="post" class="form-reg"  enctype="multipart/form-data">
+    <div class="container">
+        
+        <table class="table mt-3">
+            <h4 align="center">User Complaints</h4>
+
+            <thead>
+                <tr>
+                    <th scope="col">SL.NO</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Content</th>
+                 
+                    <th scope="col">Date</th>
+                    <th scope="col">Reply</th>
+                </tr>
+            </thead>
+            <tbody>
+{% for i in user %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.user.user_name}}</td>
+                    <td>{{i.complaint_title}}</td>
+                    <td>{{i.complaint_content}}</td>
+                 
+                    <td>{{i.complaint_date}}</td>
+     <td>
+                     {% if i.comaplaint_status == "0" %}
+                <a href="{% url 'xadmin:Reply' i.id %}" class="btn btn-danger">Reply</a></td>
+                {% else %}
+                {{i.comaplaint_replay}}
+                {% endif %}             
+                </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+
+
+<br>
+<br>
+<table class="table mt-3">
+    <h4 align="center">Coach Complaints</h4>
+
+    <thead>
+        <tr>
+            <th scope="col">SL.NO</th>
+            <th scope="col">Name</th>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+         
+            <th scope="col">Date</th>
+            <th scope="col">Reply</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in coach %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.coach.coach_name}}</td>
+            <td>{{i.complaint_title}}</td>
+            <td>{{i.complaint_content}}</td>
+         
+            <td>{{i.complaint_date}}</td>
+            <td>
+            {% if i.comaplaint_status == "0" %}
+            <a href="{% url 'xadmin:Reply' i.id %}" class="btn btn-danger">Reply</a></td>
+            {% else %}
+            {{i.comaplaint_replay}}
+            {% endif %}               
+        </tr>
+       {% endfor %}
+       
+    </tbody>
+</table>
+
+
+
+<br>
+<br>
+<table class="table mt-3">
+    <h4 align="center">Shop Complaints</h4>
+    <thead>
+        <tr>
+            <th scope="col">SL.NO</th>
+            <th scope="col">Name</th>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+         
+            <th scope="col">Date</th>
+            <th scope="col">Reply</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in shop %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.shop.shop_name}}</td>
+            <td>{{i.complaint_title}}</td>
+            <td>{{i.complaint_content}}</td>
+         
+            <td>{{i.complaint_date}}</td>
+
+            <td>
+                {% if i.comaplaint_status == "0" %}
+                <a href="{% url 'xadmin:Reply' i.id %}" class="btn btn-danger">Reply</a></td>
+                {% else %}
+                {{i.comaplaint_replay}}
+                {% endif %}               
+        </tr>
+       {% endfor %}
+       
+    </tbody>
+</table>
+    </div>
+</body>
+
+
+</html>
+{% endblock content %}

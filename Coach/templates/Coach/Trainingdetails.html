@@ -1,0 +1,162 @@
+{% extends 'Coach/header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        form {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            border-radius: 50px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        input[type="text"], textarea {
+            width: calc(100% - 24px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-reset {
+            background-color: #dc3545;
+        }
+
+        .btn-reset:hover {
+            background-color: #c82333;
+        }
+
+        .btn-container {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <table border="0" cellspacing="0" cellpadding="0" align="center">
+            <tr>
+                <td>
+                    <label for="txt_duration">Duration:</label>
+                </td>
+                <td>
+                    <input type="text" name="txt_duration" id="txt_duration">
+                </td>
+            </tr>
+                        <tr>
+                <td>
+                    <label for="txt_details">Details:</label>
+                </td>
+                <td>
+                    <textarea name="txt_details" id="txt_details"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="btn-container">
+                    <button type="submit" name="btn_save" id="btn_save" value="Save">Save</button>
+                    <button type="reset" name="btn_reset" id="btn_reset" class="btn-reset" value="Reset">Reset</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <br>
+    <table border="1" cellspacing="0" cellpadding="8" align="center">
+        <tr>
+            <th>
+                Sl.No
+            </th>
+           
+            <th>
+                Duration
+            </th>
+            <th>
+                Details
+                </th>
+                <th>
+                    Add Daily Plan
+                </th>
+            
+            <th>
+                Action
+            </th>
+            {% for i in tdata %}
+            <tr>
+                <td>
+                    {{forloop.counter}}
+                </td>
+                
+                <td>
+                    {{i.training_duration}}
+                </td>
+                <td>
+                    {{i.training_details}}
+                </td>
+                <td>
+                    <a href="{% url 'webcoach:DailyPlan' i.id  %}" class="btn btn-success">Add Daily Plan</a>
+                </td>
+                <td>
+                    <a href="{% url 'webcoach:deletetraining_details' i.id  %}" class="btn btn-danger">DELETE</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+</body>
+</html>
+{% endblock content %}

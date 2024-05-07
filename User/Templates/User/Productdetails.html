@@ -1,0 +1,145 @@
+{% extends 'User/header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product details</title>
+    <style>
+        /* CSS Styles */
+        /* Style for the body */
+      
+        /* Style for the form */
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        /* Style for table cells */
+        td, th {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        /* Style for table headers */
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Style for product image */
+        img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 5px;
+        }
+
+        /* Style for buttons */
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style for out of stock message */
+        span {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Style for form labels */
+        label {
+            font-weight: bold;
+        }
+
+        /* Style for description */
+        .description {
+            padding-top: 10px;
+        }
+
+        /* Responsive styles */
+        @media only screen and (max-width: 600px) {
+            form {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="2" align="center">
+            <tr>
+                <td colspan="2" align="center">
+                    <img src="{{data.product_photo.url}}" alt="" height="200" width="200">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="name">Name:</label></td>
+                <td>{{data.product_name}}</td>
+            </tr>
+            <tr>
+                <td>Price:</td>
+                <td>{{data.product_price}}</td>
+            </tr>
+            <tr>
+                <td>Category:</td>
+                <td>{{data.scategory.category.category_name}}</td>
+            </tr>
+            <tr>
+                <td>Brand:</td>
+                <td>{{data.scategory.scategory_name}}</td>
+            </tr>
+            <tr>
+                <td>Shop:</td>
+                <td>{{data.shop.shop_name}}</td>
+            </tr> 
+            <tr>
+                <td>Description:</td>
+                <td class="description">{{data.product_discription}}</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    {% if data.product_stock == 0 %}
+                        <span>Out Of Stock</span>
+                    {% else %}
+                       <button> <a href="{% url 'webuser:AddCart' data.id %}">Add to Cart</a></button>
+                    {% endif %}    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">   
+                   <button> <a href="{% url 'webuser:AddWishList' data.id %}">Add to Wishlist</a></button>
+                </td>
+            </tr>
+        </table>
+        {% if msg %}
+            <script>
+                alert('{{msg}}')
+                window.location='/User/ProductDetails/{{data.id}}'
+            </script>
+        {% endif %}
+    </form>
+</body>
+</html>
+{% endblock content %}
